@@ -734,8 +734,7 @@
                 stream: stream,
                 streamid: streamid,
                 mediaElement: mediaElement,
-                // <kau>
-                //blobURL: mediaElement.mozSrcObject ? URL.createObjectURL(stream) : mediaElement.src,
+                blobURL: mediaElement.mozSrcObject ? URL.createObjectURL(stream) : mediaElement.src,
                 type: 'local',
                 userid: connection.userid,
                 extra: connection.extra,
@@ -1485,8 +1484,8 @@
                     stream: stream,
                     streamid: stream.streamid,
                     session: session || connection.session,
-                    // kau
-                    //blobURL: isPluginRTC ? '' : mediaElement.mozSrcObject ? URL.createObjectURL(stream) : mediaElement.src,
+
+                    blobURL: isPluginRTC ? '' : mediaElement.mozSrcObject ? URL.createObjectURL(stream) : mediaElement.src,
                     type: 'remote',
 
                     extra: _config.extra,
@@ -3308,10 +3307,7 @@
         }
 
         // "mozSrcObject" is always preferred over "src"!!
-        //mediaElement[isFirefox ? 'mozSrcObject' : 'src'] = isFirefox ? stream : window.webkitURL.createObjectURL(stream);
-        // <kau>
-        mediaElement.srcObject = stream;
-
+        mediaElement[isFirefox ? 'mozSrcObject' : 'src'] = isFirefox ? stream : window.webkitURL.createObjectURL(stream);
 
         mediaElement.controls = true;
         mediaElement.autoplay = !!session.remote;
@@ -3873,10 +3869,10 @@
             // localStreams object will store stream
             // until it is removed using native-stop method.
             connection.localStreams[streamid] = stream;
-            // kau
+
             var video = options.video;
             if (video) {
-                video.srcObject = stream;
+                video[isFirefox ? 'mozSrcObject' : 'src'] = isFirefox ? stream : window.webkitURL.createObjectURL(stream);
                 video.play();
             }
 

@@ -11,6 +11,8 @@
 // Ref. discussion: https://github.com/muaz-khan/WebRTC-Experiment/issues/2
 // Source Code: https://github.com/muaz-khan/WebRTC-Scalable-Broadcast
 
+
+//<kau> Node.js 기반 signaling 서버
 module.exports = exports = WebRTC_Scalable_Broadcast;
 
 function WebRTC_Scalable_Broadcast(app) {
